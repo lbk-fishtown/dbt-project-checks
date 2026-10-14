@@ -21,8 +21,8 @@ Checks ship disabled, so installing the package does not change how your project
 ```yaml
 # packages.yml
 packages:
-  - git: https://github.com/<you>/dbt-project-checks
-    revision: v1.0.0
+  - git: https://github.com/lbk-fishtown/dbt-project-checks
+    revision: main   # no tagged release yet; pin a commit SHA for a stable install
 ```
 
 Run `dbt deps`.
