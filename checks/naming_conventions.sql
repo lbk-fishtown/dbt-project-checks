@@ -1,3 +1,6 @@
+-- Flags models whose names break the naming convention.
+-- Reads enabled `models` in this project and returns those where regexp_matches(name, pattern)
+-- is false. The pattern is var `model_name_pattern` (default '^(stg|int|dim|fct|base|mart)_.+').
 select unique_id
 from {{ info_schema('models') }}
 where enabled

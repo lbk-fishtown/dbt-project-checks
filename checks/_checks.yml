@@ -85,8 +85,8 @@ checks:
       enabled: false
       severity: warn
 
-  - name: models_have_primary_key_test
-    description: "Models with no unique test on the primary key."
+  - name: models_have_unique_test
+    description: "Models with no unique test."
     config:
       enabled: false
       severity: warn
@@ -104,7 +104,7 @@ checks:
       severity: warn
 
   - name: sources_have_freshness_config
-    description: "Sources with no freshness (loaded_at_field) configured."
+    description: "Source tables with no freshness warn_after or error_after set."
     config:
       enabled: false
       severity: warn
@@ -122,7 +122,7 @@ checks:
       severity: warn
 
   - name: sources_unused
-    description: "Sources with no downstream models."
+    description: "Sources that nothing but tests depends on."
     config:
       enabled: false
       severity: warn
@@ -162,8 +162,10 @@ checks:
     config:
       enabled: false
       severity: warn
+
   - name: duplicate_check_names
     description: "Checks that share a name with another enabled check."
     config:
       enabled: false
       severity: warn
+      selection_filter_on: none

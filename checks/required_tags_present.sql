@@ -1,3 +1,9 @@
+-- Flags models and sources missing any required tag.
+-- Unions enabled `models` and `sources` in this project, then compares
+-- len(list_intersect(tags, required)) with the number of required tags; a shortfall means
+-- at least one is missing. Jinja renders var `required_tags` (default ['owner']) as a list literal.
+-- Pass required_tags as a list, even for one tag (required_tags: [owner]). A bare string such as
+-- `owner` renders as invalid SQL, and its length counts characters rather than tags.
 {% set required_tags = var('required_tags', ['owner']) %}
 select unique_id
 from (

@@ -1,3 +1,5 @@
+-- Flags models that have no properties YAML.
+-- Reads enabled `models` in this project and returns rows where properties_yml_file_path is null.
 select unique_id
 from {{ info_schema('models') }}
 where enabled

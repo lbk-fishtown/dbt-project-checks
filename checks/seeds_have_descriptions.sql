@@ -1,3 +1,5 @@
+-- Flags seeds with no description.
+-- Reads enabled `seeds` in this project and returns rows whose description is null or blank.
 select unique_id
 from {{ info_schema('seeds') }}
 where enabled

@@ -1,3 +1,7 @@
+-- Flags views stacked on more than var `max_view_depth` (default 2) other views.
+-- The recursive CTE starts from `edges` where the child (in this project) and the parent are both
+-- views, at depth 1. Each step joins the current ancestor to its own view parent and adds 1 to
+-- depth, stopping at 20 hops. It returns each starting view that reached depth > max_view_depth.
 {% set max_view_depth = var('max_view_depth', 2) %}
 with recursive chain as (
   select e.child_unique_id as node, e.parent_unique_id as ancestor, 1 as depth

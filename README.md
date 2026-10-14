@@ -10,7 +10,8 @@ Checks ship disabled, so installing the package does not change how your project
   DuckDB at parse time, so no warehouse connection is needed and nothing is materialised. Metadata
   only, which puts anything needing warehouse data or model SQL text out of scope.
 - Every check looks at your project's own resources, apart from `duplicate_check_names`, which
-  deliberately scans every package to catch name clashes.
+  deliberately scans every package to catch name clashes and always runs project-wide, ignoring
+  `--select`.
 - Enabled checks run before every `dbt build`, or on demand with `dbt check`. Default severity is
   `warn`, so a violation reports without failing the run; add `+severity: error` to gate on one. See
   [check configs](https://docs.getdbt.com/reference/check-configs) for the rest of the surface.
@@ -49,7 +50,7 @@ checks:
     models_are_tested:
       +enabled: true   # Models that have no tests.
     sources_have_freshness_config:
-      +enabled: true   # Sources with no freshness (loaded_at_field) configured.
+      +enabled: true   # Source tables with no freshness warn_after or error_after set.
     public_models_have_contract:
       +enabled: true   # Public models with no enforced contract.
 
@@ -74,13 +75,13 @@ checks:
     #   +enabled: true   # Exposures with no owner name or email.
     # required_tags_present:
     #   +enabled: true   # Models and sources that are missing their required tags.
-    #   # var required_tags: [owner]
+    #   # var required_tags: [owner]   (always a list, even for one tag)
 
     # --- testing ---
     # sources_are_tested:
     #   +enabled: true   # Source tables that have no tests.
-    # models_have_primary_key_test:
-    #   +enabled: true   # Models with no unique test on the primary key.
+    # models_have_unique_test:
+    #   +enabled: true   # Models with no unique test.
     # primary_key_declared:
     #   +enabled: true   # Models that do not declare a primary_key.
     # test_coverage_below_threshold:
@@ -93,7 +94,7 @@ checks:
     # sources_joined:
     #   +enabled: true   # Models that read more than one source directly.
     # sources_unused:
-    #   +enabled: true   # Sources with no downstream models.
+    #   +enabled: true   # Sources that nothing but tests depends on.
     # sources_duplicated:
     #   +enabled: true   # Sources that point at the same relation.
     # staging_references_staging:

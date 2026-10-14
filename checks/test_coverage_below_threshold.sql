@@ -1,3 +1,8 @@
+-- Flags the project when its share of tested models is below var `test_coverage_threshold` (default 100).
+-- Left-joins enabled `models` in this project to `data_tests` and counts distinct models against
+-- distinct tested models. It returns one row (totals and coverage_pct, rounded to 1 dp) when
+-- coverage is under the threshold. There is no unique_id column, so dbt runs it project-wide and
+-- ignores --select.
 {% set threshold = var('test_coverage_threshold', 100) %}
 with models as (
   select unique_id from {{ info_schema('models') }}

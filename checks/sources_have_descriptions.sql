@@ -1,3 +1,6 @@
+-- Flags source tables missing a description.
+-- Reads enabled `sources` (one row per source table) in this project, and flags a row when
+-- source_description (the parent source block) or description (the table) is null or blank.
 select unique_id
 from {{ info_schema('sources') }}
 where enabled

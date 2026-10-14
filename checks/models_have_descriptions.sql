@@ -1,3 +1,5 @@
+-- Flags models with no description.
+-- Reads enabled `models` in this project and returns rows whose description is null or blank.
 select unique_id
 from {{ info_schema('models') }}
 where enabled
