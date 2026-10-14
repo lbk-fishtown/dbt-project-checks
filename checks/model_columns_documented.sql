@@ -1,0 +1,6 @@
+select c.node_unique_id as unique_id
+from {{ info_schema('node_columns') }} c
+join {{ info_schema('models') }} m on m.unique_id = c.node_unique_id
+where m.enabled
+  and m.package_name = (select project_name from {{ info_schema('project') }})
+  and (c.description is null or trim(c.description) = '')

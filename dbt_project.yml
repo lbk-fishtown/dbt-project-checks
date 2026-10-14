@@ -1,0 +1,9 @@
+name: dbt_project_checks
+version: 1.0.0
+config-version: 2
+
+require-dbt-version: [">=2.0.0"]
+
+# Checks read the dbt Information Schema, so its version must be pinned.
+info_schema:
+  version: 1

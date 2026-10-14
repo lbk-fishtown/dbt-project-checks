@@ -1,0 +1,169 @@
+version: 2
+
+checks:
+  - name: models_have_descriptions
+    description: "Models that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_have_descriptions
+    description: "Sources or source tables that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: model_columns_documented
+    description: "Model columns that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: source_columns_documented
+    description: "Source columns that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: seeds_have_descriptions
+    description: "Seeds that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: macros_documented
+    description: "Project macros that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: models_have_yml_files
+    description: "Models that have no properties YAML file."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: public_models_have_group_owner
+    description: "Public models with no group owner."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: public_models_have_contract
+    description: "Public models with no enforced contract."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: public_models_documented
+    description: "Public models that are missing a description."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: exposures_have_owners
+    description: "Exposures with no owner name or email."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: required_tags_present
+    description: "Models and sources that are missing their required tags."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: models_are_tested
+    description: "Models that have no tests."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_are_tested
+    description: "Source tables that have no tests."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: models_have_primary_key_test
+    description: "Models with no unique test on the primary key."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: primary_key_declared
+    description: "Models that do not declare a primary_key."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: test_coverage_below_threshold
+    description: "Test coverage below the configured threshold."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_have_freshness_config
+    description: "Sources with no freshness (loaded_at_field) configured."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: no_direct_source_dependencies
+    description: "Non-staging models that read a source directly."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_joined
+    description: "Models that read more than one source directly."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_unused
+    description: "Sources with no downstream models."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: sources_duplicated
+    description: "Sources that point at the same relation."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: staging_references_staging
+    description: "Staging models whose parent is another staging model."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: staging_references_marts
+    description: "Staging models with a marts-layer parent."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: naming_conventions
+    description: "Models whose name does not match the configured pattern."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: views_chained_by_threshold
+    description: "Views chained deeper than the configured limit."
+    config:
+      enabled: false
+      severity: warn
+
+  - name: models_without_upstream_dependencies
+    description: "Models that reference no other model or source."
+    config:
+      enabled: false
+      severity: warn
+  - name: duplicate_check_names
+    description: "Checks that share a name with another enabled check."
+    config:
+      enabled: false
+      severity: warn
